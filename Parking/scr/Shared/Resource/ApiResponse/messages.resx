@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessTokenInvalid" xml:space="preserve">
+    <value>El token de acceso es inválido.</value>
+  </data>
+  <data name="AccountAlreadyVerified" xml:space="preserve">
+    <value>La cuenta de usuario ya fue verificada.</value>
+  </data>
+  <data name="CannotEditSuperadmin" xml:space="preserve">
+    <value>No se pueden editar los datos de un SuperAdministrador.</value>
+  </data>
+  <data name="CannotEditYourOwnProfile" xml:space="preserve">
+    <value>No puede editar su propio perfil.</value>
+  </data>
+  <data name="CannotRemoveSuperadmin" xml:space="preserve">
+    <value>No se puede eliminar a un SuperAdministrador.</value>
+  </data>
+  <data name="CannotRemoveYourOwnProfile" xml:space="preserve">
+    <value>No puede eliminar su propio perfil.</value>
+  </data>
+  <data name="CannotUpdateAnotherUserResource" xml:space="preserve">
+    <value>No puede actualizar un recurso de otro usuario.</value>
+  </data>
+  <data name="CouldNotSendEmail" xml:space="preserve">
+    <value>No se pudo enviar el correo electrónico.</value>
+  </data>
+  <data name="CreateBasicUserAccount" xml:space="preserve">
+    <value>La cuenta de usuario se creó con éxito. Confirme su correo electrónico.</value>
+  </data>
+  <data name="CreateEmployeeAccount" xml:space="preserve">
+    <value>La cuenta fue creada con éxito.</value>
+  </data>
+  <data name="CreateResource" xml:space="preserve">
+    <value>El recurso se creó con éxito.</value>
+  </data>
+  <data name="DeleteResource" xml:space="preserve">
+    <value>El recurso se eliminó con éxito.</value>
+  </data>
+  <data name="DocumentIsEmpty" xml:space="preserve">
+    <value>El documento de identidad está vacío.</value>
+  </data>
+  <data name="DocumentIsInvalid" xml:space="preserve">
+    <value>El documento de identidad es inválido.</value>
+  </data>
+  <data name="DocumentMaxCharacters" xml:space="preserve">
+    <value>El documento de identidad debe tener {0} caracteres.</value>
+  </data>
+  <data name="DocumentMustBeNumeric" xml:space="preserve">
+    <value>El documento de identidad debe ser numérico.</value>
+  </data>
+  <data name="EmailNotConfirmed" xml:space="preserve">
+    <value>El correo electrónico no está confirmado.</value>
+  </data>
+  <data name="EmailOrPasswordIncorrect" xml:space="preserve">
+    <value>El correo electrónico o la contraseña son incorrectos.</value>
+  </data>
+  <data name="EmailSuccessfullyVerified" xml:space="preserve">
+    <value>Correo electrónico verificado con éxito.</value>
+  </data>
+  <data name="EmailVerificationTokenInvalid" xml:space="preserve">
+    <value>El token de verificación de correo es inválido.</value>
+  </data>
+  <data name="GetResource" xml:space="preserve">
+    <value>Recurso obtenido con éxito.</value>
+  </data>
+  <data name="HasNoRefreshToken" xml:space="preserve">
+    <value>No tiene un refresh token para revocar.</value>
+  </data>
+  <data name="InactiveUserAccount" xml:space="preserve">
+    <value>Cuenta de usuario inactiva.</value>
+  </data>
+  <data name="InvalidModelState" xml:space="preserve">
+    <value>Se produjeron errores de validación.</value>
+  </data>
+  <data name="MissingClaim" xml:space="preserve">
+    <value>Claim faltante en el token: {0}</value>
+  </data>
+  <data name="OldPasswordIncorrect" xml:space="preserve">
+    <value>La contraseña actual es incorrecta.</value>
+  </data>
+  <data name="PasswordHasNotLowerCaseLetters" xml:space="preserve">
+    <value>La contraseña debe tener al menos una letra minúscula.</value>
+  </data>
+  <data name="PasswordHasNotNumbers" xml:space="preserve">
+    <value>La contraseña debe tener al menos un número.</value>
+  </data>
+  <data name="PasswordHasNotUpperCaseLetters" xml:space="preserve">
+    <value>La contraseña debe tener al menos una letra mayúscula.</value>
+  </data>
+  <data name="PasswordIsEmpty" xml:space="preserve">
+    <value>La contraseña no puede estar vacía.</value>
+  </data>
+  <data name="PasswordMinimumCharacters" xml:space="preserve">
+    <value>La contraseña debe tener al menos 5 caracteres.</value>
+  </data>
+  <data name="PasswordResetTokenInvalid" xml:space="preserve">
+    <value>El token de restablecimiento de contraseña es inválido.</value>
+  </data>
+  <data name="PasswordSuccessfullyReset" xml:space="preserve">
+    <value>La contraseña se restableció con éxito.</value>
+  </data>
+  <data name="PermitsNotGranted" xml:space="preserve">
+    <value>No tiene permisos para realizar esta acción.</value>
+  </data>
+  <data name="ReferenceConstraintViolated" xml:space="preserve">
+    <value>Se detectó una violación de restricción de referencia en la base de datos.</value>
+  </data>
+  <data name="RefreshTokenExpired" xml:space="preserve">
+    <value>El refresh token ha expirado.</value>
+  </data>
+  <data name="RefreshTokenInvalid" xml:space="preserve">
+    <value>El refresh token es inválido.</value>
+  </data>
+  <data name="ResourceFromAnotherUser" xml:space="preserve">
+    <value>El recurso pertenece a otro usuario.</value>
+  </data>
+  <data name="ResourceNotFound" xml:space="preserve">
+    <value>Recurso no encontrado.</value>
+  </data>
+  <data name="RevokeToken" xml:space="preserve">
+    <value>El refresh token fue revocado correctamente.</value>
+  </data>
+  <data name="SendPasswordResetLink" xml:space="preserve">
+    <value>Se envió el correo para restablecer la contraseña.</value>
+  </data>
+  <data name="SuccessfulLogin" xml:space="preserve">
+    <value>Inicio de sesión exitoso.</value>
+  </data>
+  <data name="SuccessfulParkingSessionCreate" xml:space="preserve">
+    <value>La session se ah creado correctamente</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>Se produjo un error inesperado. Intente nuevamente.</value>
+  </data>
+  <data name="UnexpectedErrors" xml:space="preserve">
+    <value>Se encontraron errores inesperados. Intente nuevamente.</value>
+  </data>
+  <data name="UniqueConstraintViolated" xml:space="preserve">
+    <value>Se detectó una violación de restricción única en la base de datos.</value>
+  </data>
+  <data name="UnrecognizableFile" xml:space="preserve">
+    <value>El archivo no puede ser reconocido por el sistema.</value>
+  </data>
+  <data name="UpdatedAccessToken" xml:space="preserve">
+    <value>El access token se actualizó correctamente.</value>
+  </data>
+  <data name="UpdateResource" xml:space="preserve">
+    <value>El recurso se actualizó con éxito.</value>
+  </data>
+  <data name="UsernameAlreadyExists" xml:space="preserve">
+    <value>El correo electrónico ya está en uso por otro usuario.</value>
+  </data>
+  <data name="UsernameNotFound" xml:space="preserve">
+    <value>Usuario no encontrado.</value>
+  </data>
+  <data name="VehicleAlreadyExists" xml:space="preserve">
+    <value>La placa del vehiculo ya esta siendo utilazada </value>
+  </data>
+</root>

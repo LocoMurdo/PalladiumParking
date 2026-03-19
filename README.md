@@ -1,0 +1,69 @@
+# Parking.API
+
+Descripción
+
+Parking.API es una API REST construida con .NET 8 para gestionar aparcamientos: vehículos, sesiones, tarifas y pagos. La aplicación sigue una estructura en capas: `API` (controladores y arranque), `scr/Core` (casos de uso), `scr/Infrastructure` (persistencia y servicios), `scr/Shared` (interfaces, entidades y configuraciones).
+
+Requisitos
+
+- .NET 8 SDK
+- SQL Server (o una cadena de conexión compatible)
+- Variables de entorno gestionadas con `DotEnv.Core`
+
+Estructura importante
+
+- `Program.cs` — configuración del pipeline y DI
+- `scr/Core` — use cases y controladores de la lógica de negocio
+- `scr/Infrastructure` — implementaciones de repositorios y `AppDbContext`
+- `scr/Shared` — entidades, interfaces y DTOs
+
+Configuración rápida
+
+1. Copia o crea un fichero `.env` en la raíz del proyecto con las variables necesarias. Ejemplo:
+
+```
+DefaultConnection="Server=.;Database=ParkingDb;Trusted_Connection=True;"
+JWT__Key="tu-secreto-largo"
+```
+
+2. Restaurar y ejecutar desde la CLI:
+
+```
+dotnet restore
+dotnet build
+dotnet run --project Parking.API
+```
+
+En entorno de desarrollo Swagger estará disponible (ver `Program.cs`).
+
+BasePath y rutas
+
+El pipeline usa `UsePathBase("/api")`, por tanto todas las rutas públicas quedan prefijadas con `/api`. Revisa los atributos `Route` de cada controlador para conocer las rutas exactas (por ejemplo, `VehicleController` actualmente expone `POST /api/User`).
+
+Inyección de dependencias
+
+Registra repositorios y casos de uso en `Program.cs`. Ejemplo recomendado:
+
+```
+builder.Services.AddScoped<IParkingSessionRepository, ParkingSessionRepository>();
+builder.Services.AddScoped<CreateVehicleUsecase>();
+builder.Services.AddScoped<GetOpenParkingSessionsUseCase>();
+```
+
+Usa `Scoped` para servicios que dependen de `DbContext`.
+
+Problemas conocidos
+
+- Error: `InvalidOperationException: Action '...Create' has more than one parameter that was specified or inferred as bound from request body`.
+  - Causa: con `[ApiController]`, ASP.NET Core infiere tipos complejos como `[FromBody]`. Si una acción tiene dos parámetros complejos, se produce la colisión.
+  - Solución: inyectar dependencias por constructor o usar `[FromServices]` en parámetros que deben resolverse desde DI.
+
+Pruebas
+
+- El proyecto `TestParking` contiene pruebas unitarias; ejecuta `dotnet test` en la solución para correrlas.
+
+Contribuir
+
+- Abrir issues o pull requests con descripciones claras de cambios.
+- Mantener controladores delgados: delega la lógica a use cases y registra servicios por interfaz cuando sea posible.
+

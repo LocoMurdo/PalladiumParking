@@ -1,0 +1,63 @@
+## .NET / Visual Studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## NuGet
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nupkg
+**/packages/repositories.config
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Build results
+[Dd]ebugPublic/
+[Rr]eleases/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+*.appx
+*.appxbundle
+*.appxupload
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.pfx
+*.publishsettings
+
+## Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+## Rider
+.idea/
+
+## Environment / secrets
+*.env
+appsettings.Development.json
+
+## OS files
+.DS_Store
+Thumbs.db
