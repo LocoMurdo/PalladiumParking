@@ -19,6 +19,12 @@ builder.Services.AddDbContext<DbContext, AppDbContext>(options =>
     options.UseSqlServer(connectionString)); 
 
 
+/* Kestrel configuration */
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000);
+});
+
 
 
 
@@ -89,11 +95,6 @@ app.UseWebSockets()
    .UseAuthentication()
    .UseAuthorization()
    .UseEndpoints(endpoints => endpoints.MapControllers());
-
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5000); // Escucha en todas las IPs
-});
 
 
 
