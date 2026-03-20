@@ -1,4 +1,3 @@
-
 using DotEnv.Core;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 /*Database conection*/
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DbContext, AppDbContext>(options =>
-    options.UseSqlServer("name = DefaultConnection")); 
+    options.UseSqlServer(connectionString)); 
 
 
 
@@ -74,6 +74,7 @@ else
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseWebSockets()
@@ -88,6 +89,12 @@ app.UseWebSockets()
    .UseAuthentication()
    .UseAuthorization()
    .UseEndpoints(endpoints => endpoints.MapControllers());
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // Escucha en todas las IPs
+});
+
 
 
 app.Run();

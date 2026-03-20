@@ -57,6 +57,7 @@ artifacts/
 ## Environment / secrets
 *.env
 appsettings.Development.json
+appsettings.Production.json
 
 ## OS files
 .DS_Store
