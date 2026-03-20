@@ -22,7 +22,7 @@ builder.Services.AddDbContext<DbContext, AppDbContext>(options =>
 /* Kestrel configuration */
 builder.WebHost.ConfigureKestrel(options =>
 {
-    options.ListenAnyIP(5000);
+    options.ListenAnyIP(5050);
 });
 
 
