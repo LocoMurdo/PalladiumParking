@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Parking.API.scr.Core.ParkingSessionUseCase.UseCase;
-using Parking.API.scr.Core.VehicleUseCase.UseCases;
 using SimpleResults;
 
 namespace Parking.API.scr.Core.ParkingSessionUseCase
 {
+    [Authorize]
     [Route("ParkingSeassion")]
     [ApiController]
     public class ParkingSessionController
@@ -16,7 +16,6 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<Result>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
-        [AllowAnonymous]
         [HttpPost]
         public async Task<Result> Create(
         [FromBody] CreateParkingSessionRequest request,
@@ -31,7 +30,6 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase
         [ProducesResponseType(typeof(CloseParkingSessionResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
-        [AllowAnonymous]
         [HttpPost("CloseParkingSession")]
         public async Task<Result<CloseParkingSessionResponse>> Close(
     [FromBody] CloseParkingSessionRequest request,
@@ -46,7 +44,6 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase
         [ProducesResponseType(typeof(CloseParkingSessionResponse), StatusCodes.Status200OK)]
         [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
-        [AllowAnonymous]
         [HttpGet("GetParkingsession")]
         public async Task<Result<IEnumerable<OpenParkingSessionResponse>>> GetOpen(
     GetOpenParkingSessionsUseCase useCase)
@@ -54,5 +51,33 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase
             return await useCase.ExecuteAsync();
         }
 
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("history")]
+        public async Task<Result<IEnumerable<ParkingSessionDetailResponse>>> GetAll(
+        GetAllParkingSessionsUseCase useCase)
+        {
+            return await useCase.ExecuteAsync();
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<Result<ParkingSessionDetailResponse>> GetById(
+        int id,
+        GetParkingSessionByIdUseCase useCase)
+        {
+            return await useCase.ExecuteAsync(id);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [HttpPost("{id}/cancel")]
+        public async Task<Result> Cancel(
+        int id,
+        CancelParkingSessionUseCase useCase)
+        {
+            return await useCase.ExecuteAsync(id);
+        }
     }
 }

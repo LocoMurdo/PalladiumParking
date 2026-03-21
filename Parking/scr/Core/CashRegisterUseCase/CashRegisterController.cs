@@ -1,11 +1,11 @@
-﻿using Azure.Core;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Parking.API.scr.Core.CashRegisterUseCase.UseCase;
 using SimpleResults;
 
 namespace Parking.API.scr.Core.CashRegisterUseCase
 {
+    [Authorize]
     [Route("CashRegister")]
     [ApiController]
     public class CashRegisterController : Controller
@@ -13,7 +13,6 @@ namespace Parking.API.scr.Core.CashRegisterUseCase
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<Result>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
-        [AllowAnonymous]
         [HttpPost("open")]
         public async Task<Result> Open(
             [FromBody] OpenCashRequest request,
@@ -28,17 +27,11 @@ namespace Parking.API.scr.Core.CashRegisterUseCase
         {
             var result = await useCase.ExecuteAsync();
             if (result.IsSuccess)
-            {
                 return Ok(result.Data);
-            }
             else if (result.Status == ResultStatus.Conflict)
-            {
                 return Conflict(result);
-            }
             else
-            {
                 return BadRequest(result);
-            }
         }
 
         [HttpGet("history")]
@@ -47,17 +40,11 @@ namespace Parking.API.scr.Core.CashRegisterUseCase
         {
             var result = await useCase.ExecuteAsync();
             if (result.IsSuccess)
-            {
                 return Ok(result.Data);
-            }
             else if (result.Status == ResultStatus.Conflict)
-            {
                 return Conflict(result);
-            }
             else
-            {
                 return BadRequest(result);
-            }
         }
     }
 }

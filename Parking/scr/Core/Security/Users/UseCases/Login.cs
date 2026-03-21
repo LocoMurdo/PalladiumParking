@@ -23,36 +23,28 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
                     .NotEmpty()
                     .EmailAddress();
             RuleFor(request => request.Password).NotEmpty();
-
         }
     }
-    // This is to identify the base type in the payload.
-    [JsonDerivedType(typeof(UserLoginResponse), typeDiscriminator: "user")]
-    // [JsonDerivedType(typeof(EmployeeLoginResponse), typeDiscriminator: "employee")]
 
+    [JsonDerivedType(typeof(UserLoginResponse), typeDiscriminator: "user")]
     public class UserLoginResponse
     {
         public int UserId { get; set; }
         public int PersonId { get; set; }
         public string UserName { get; set; }
         public string Names { get; set; }
-      
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
     }
+
     public static class UserLoginMapper
     {
         private static void MapToUserLoginResponse(User user, UserLoginResponse response)
         {
-            
             response.Names = user.Person.Names;
-           
             response.UserId = user.Id;
             response.PersonId = user.PersonId;
             response.UserName = user.UserName;
-          
-                
-
         }
         public static UserLoginResponse MapToUserLoginResponse(this User user)
         {
@@ -67,16 +59,18 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
                 UserId = response.UserId,
                 PersonId = response.PersonId,
                 UserName = response.UserName,
-              
             };
         }
     }
+
     public class UserLoginUseCase(
         DbContext context,
         IUserRepository userRepository,
         ITokenService tokenService,
         IPasswordHasher passwordHasher,
-        UserLoginValidator validator)
+        IDatetimeservice dateTime,
+        UserLoginValidator validator,
+        IHttpContextAccessor httpContextAccessor)
     {
         public async Task<Result<UserLoginResponse>> ExecuteAsync(UserLoginRequest request)
         {
@@ -88,20 +82,26 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
             if (user is null || !passwordHasher.Verify(request.Password, user.Password))
                 return Result.Unauthorized(messages.EmailOrPasswordIncorrect);
 
-            
+            var userLoginResponse = user.MapToUserLoginResponse();
+            var userClaims = userLoginResponse.MapToUserClaims();
+            userLoginResponse.AccessToken = tokenService.CreateAccessToken(userClaims);
 
-            user.RefreshToken = tokenService.CreateRefreshToken();
-            user.RefreshTokenExpiry = tokenService.CreateExpiryForRefreshToken();
+            // Create refresh token and store hash in DB
+            var rawRefreshToken = tokenService.CreateRefreshToken();
+            var refreshTokenEntity = new RefreshToken
+            {
+                UserId = user.Id,
+                TokenHash = tokenService.HashToken(rawRefreshToken),
+                ExpiresAt = tokenService.CreateExpiryForRefreshToken(),
+                CreatedAt = dateTime.UtcNow,
+                CreatedByIp = httpContextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString()
+            };
+
+            context.Set<RefreshToken>().Add(refreshTokenEntity);
             await context.SaveChangesAsync();
 
-           
-                var userLoginResponse = user.MapToUserLoginResponse();
-                var userClaims = userLoginResponse.MapToUserClaims();
-                userLoginResponse.AccessToken = tokenService.CreateAccessToken(userClaims);
-                userLoginResponse.RefreshToken = user.RefreshToken;
-                return Result.Success(userLoginResponse, messages.SuccessfulLogin);
-            }
-           
-
+            userLoginResponse.RefreshToken = rawRefreshToken;
+            return Result.Success(userLoginResponse, messages.SuccessfulLogin);
+        }
     }
 }

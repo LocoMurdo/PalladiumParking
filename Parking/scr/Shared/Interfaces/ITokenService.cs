@@ -10,6 +10,7 @@ namespace Parking.API.scr.Shared.Interfaces
         string CreateAccessToken(IEnumerable<Claim> claims);
 
         string CreateRefreshToken();
+        string HashToken(string token);
         DateTime CreateExpiryForRefreshToken();
         ClaimsPrincipal GetPrincipalFromExpiredAccessToken(string token);
         ClaimsIdentity GetClaimsIdentity(string token);

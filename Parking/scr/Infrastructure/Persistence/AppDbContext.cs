@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Parking.API.scr.HostAplication.Extensions;
+using Parking.API.scr.Infrastructure.Persistence.SeedData;
 using Parking.API.scr.Shared.Entities;
 using Parking.API.scr.Shared.Interfaces;
 using System;
@@ -32,10 +33,14 @@ namespace Parking.API.scr.Infrastructure.Persistence
             .AddEntity<Payment>()
             .AddEntity<CashRegister>()
             .AddEntity<CashMovement>()
-            .AddEntity<Subscriptions>();
+            .AddEntity<Subscriptions>()
+            .AddEntity<SubscriptionPrice>()
+            .AddEntity<RefreshToken>();
 
-
-
+            // Seed data
+            modelBuilder
+                .SeedRates()
+                .SeedSubscriptionPrices();
 
 
 
@@ -75,5 +80,36 @@ namespace Parking.API.scr.Infrastructure.Persistence
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
