@@ -136,13 +136,14 @@ namespace TestParking.UseCases
         }
 
         [Fact]
-        public async Task GetAll_Empty_ShouldReturnFailure()
+        public async Task GetAll_Empty_ShouldReturnEmptyList()
         {
             var context = CreateContext();
             var useCase = new GetAllRatesUseCase(context);
             var result = await useCase.ExecuteAsync();
 
-            Assert.False(result.IsSuccess);
+            Assert.True(result.IsSuccess);
+            Assert.Empty(result.Data);
         }
     }
 }

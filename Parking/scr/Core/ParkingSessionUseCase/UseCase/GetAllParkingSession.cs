@@ -23,10 +23,6 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase.UseCase
                 EntryTime = s.EntryTime!.Value,
                 RateId = s.RateId
             });
-            if (!response.Any())
-            {
-                return Result.Failure("No open parking sessions found.");
-            }
 
             return Result.Success(response);
         }

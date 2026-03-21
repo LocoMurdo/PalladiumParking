@@ -26,9 +26,6 @@ namespace Parking.API.scr.Core.RateUseCase.UseCase
                 })
                 .ToListAsync();
 
-            if (!rates.Any())
-                return Result.Failure("No rates found.");
-
             return Result.Success(rates.AsEnumerable());
         }
     }

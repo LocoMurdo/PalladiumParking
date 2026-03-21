@@ -31,9 +31,6 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
                 })
                 .ToListAsync();
 
-            if (!users.Any())
-                return Result.Failure("No users found.");
-
             return Result.Success(users.AsEnumerable());
         }
     }

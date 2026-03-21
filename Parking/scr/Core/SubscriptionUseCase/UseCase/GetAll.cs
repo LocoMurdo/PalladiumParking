@@ -39,9 +39,6 @@ namespace Parking.API.scr.Core.SubscriptionUseCase.UseCase
                 })
                 .ToListAsync();
 
-            if (!subscriptions.Any())
-                return Result.Failure("No subscriptions found.");
-
             return Result.Success(subscriptions.AsEnumerable());
         }
     }

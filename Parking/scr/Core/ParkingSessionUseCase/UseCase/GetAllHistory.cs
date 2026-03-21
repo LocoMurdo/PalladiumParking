@@ -22,9 +22,6 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase.UseCase
                 })
                 .ToListAsync();
 
-            if (!sessions.Any())
-                return Result.Failure("No parking sessions found.");
-
             return Result.Success(sessions.AsEnumerable());
         }
     }

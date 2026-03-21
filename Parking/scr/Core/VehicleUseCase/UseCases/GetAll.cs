@@ -26,9 +26,6 @@ namespace Parking.API.scr.Core.VehicleUseCase.UseCases
                 })
                 .ToListAsync();
 
-            if (!vehicles.Any())
-                return Result.Failure("No vehicles found.");
-
             return Result.Success(vehicles.AsEnumerable());
         }
     }
