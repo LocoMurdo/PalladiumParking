@@ -5,7 +5,7 @@ namespace Parking.API.scr.Shared.Entities
 {
     public class Payment : BaseEntity
     {
-        public int ParkingSessionId { get; set; }
+        public int? ParkingSessionId { get; set; } // Ahora es nullable
         public ParkingSession ParkingSession { get; set; }
 
        public  PaymentMethod Method  { get; set; }

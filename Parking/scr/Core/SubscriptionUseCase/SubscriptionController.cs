@@ -65,5 +65,16 @@ namespace Parking.API.scr.Core.SubscriptionUseCase
         {
             return await useCase.ExecuteAsync(id);
         }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [HttpPost("{id}/close")]
+        public async Task<Result<CloseSubscriptionResponse>> Close(
+            int id,
+            [FromServices] CloseSubscriptionUseCase useCase)
+        {
+            return await useCase.ExecuteAsync(id);
+        }
     }
 }
