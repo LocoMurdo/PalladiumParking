@@ -33,6 +33,7 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
         public int PersonId { get; set; }
         public string UserName { get; set; }
         public string Names { get; set; }
+        public string Role { get; set; }
         public string AccessToken { get; set; }
         public string RefreshToken { get; set; }
     }
@@ -45,6 +46,7 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
             response.UserId = user.Id;
             response.PersonId = user.PersonId;
             response.UserName = user.UserName;
+            response.Role = user.Role.ToString();
         }
         public static UserLoginResponse MapToUserLoginResponse(this User user)
         {
@@ -59,6 +61,7 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
                 UserId = response.UserId,
                 PersonId = response.PersonId,
                 UserName = response.UserName,
+                Role = response.Role,
             };
         }
     }

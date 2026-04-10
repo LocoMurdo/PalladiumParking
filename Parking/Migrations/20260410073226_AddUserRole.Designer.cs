@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Parking.API.scr.Infrastructure.Persistence;
 
@@ -11,9 +12,11 @@ using Parking.API.scr.Infrastructure.Persistence;
 namespace Parking.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260410073226_AddUserRole")]
+    partial class AddUserRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -304,7 +307,7 @@ namespace Parking.API.Migrations
                         {
                             Id = 2,
                             Plan = 2,
-                            Price = 20000.00m,
+                            Price = 25000.00m,
                             VehicleType = 1
                         },
                         new
@@ -318,21 +321,21 @@ namespace Parking.API.Migrations
                         {
                             Id = 4,
                             Plan = 1,
-                            Price = 2000.00m,
+                            Price = 3000.00m,
                             VehicleType = 2
                         },
                         new
                         {
                             Id = 5,
                             Plan = 2,
-                            Price = 15000.00m,
+                            Price = 20000.00m,
                             VehicleType = 2
                         },
                         new
                         {
                             Id = 6,
                             Plan = 3,
-                            Price = 30000.00m,
+                            Price = 35000.00m,
                             VehicleType = 2
                         });
                 });

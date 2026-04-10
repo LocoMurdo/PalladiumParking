@@ -19,8 +19,7 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
         public string LastNames { get; init; }
 
         public string CellPhone { get; init; }
-
-
+        public UserRole Role { get; init; } = UserRole.Collaborator;
 
         public User MapToUser(string password)
         {
@@ -37,6 +36,7 @@ namespace Parking.API.scr.Core.Security.Users.UseCases
             {
                 UserName = UserName,
                 Password = password,
+                Role = Role,
                 Person = person
             };
             return user;

@@ -5,7 +5,6 @@
         public int UserId { get; init; }
         public int PersonId { get; init; }
         public string UserName { get; init; } = string.Empty;
-
-
+        public string Role { get; init; } = string.Empty;
     }
 }

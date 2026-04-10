@@ -58,6 +58,7 @@ namespace Parking.API.scr.Core.SubscriptionUseCase
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [Authorize(Roles = "Admin")]
         [HttpPost("{id}/cancel")]
         public async Task<Result> Cancel(
         int id,
@@ -72,9 +73,22 @@ namespace Parking.API.scr.Core.SubscriptionUseCase
         [HttpPost("{id}/close")]
         public async Task<Result<CloseSubscriptionResponse>> Close(
             int id,
+            [FromBody] CloseSubscriptionRequest request,
             [FromServices] CloseSubscriptionUseCase useCase)
         {
-            return await useCase.ExecuteAsync(id);
+            return await useCase.ExecuteAsync(id, request);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [HttpPut("{id}/payment-method")]
+        public async Task<Result<UpdateSubscriptionPaymentMethodResponse>> UpdatePaymentMethod(
+            int id,
+            [FromBody] UpdateSubscriptionPaymentMethodRequest request,
+            [FromServices] UpdateSubscriptionPaymentMethodUseCase useCase)
+        {
+            return await useCase.ExecuteAsync(id, request);
         }
     }
 }

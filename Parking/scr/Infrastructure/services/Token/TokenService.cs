@@ -74,6 +74,8 @@ namespace Parking.API.scr.Infrastructure.services.Token
                 new(CustomClaimsType.UserId, user.UserId.ToString()),
                 new(CustomClaimsType.PersonId, user.PersonId.ToString()),
                 new(CustomClaimsType.UserName, user.UserName),
+                new(CustomClaimsType.Role, user.Role),
+                new(ClaimTypes.Role, user.Role),
                 new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

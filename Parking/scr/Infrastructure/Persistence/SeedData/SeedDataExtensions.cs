@@ -38,12 +38,12 @@ namespace Parking.API.scr.Infrastructure.Persistence.SeedData
             modelBuilder.Entity<SubscriptionPrice>().HasData(
                 // Car prices
                 new SubscriptionPrice { Id = 1, VehicleType = VehicleType.Car, Plan = SubscriptionPlan.Daily, Price = 3000.00m },
-                new SubscriptionPrice { Id = 2, VehicleType = VehicleType.Car, Plan = SubscriptionPlan.Biweekly, Price = 25000.00m },
+                new SubscriptionPrice { Id = 2, VehicleType = VehicleType.Car, Plan = SubscriptionPlan.Biweekly, Price = 20000.00m },
                 new SubscriptionPrice { Id = 3, VehicleType = VehicleType.Car, Plan = SubscriptionPlan.Monthly, Price = 40000.00m },
                 // Motorcycle prices
-                new SubscriptionPrice { Id = 4, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Daily, Price = 3000.00m },
-                new SubscriptionPrice { Id = 5, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Biweekly, Price = 20000.00m },
-                new SubscriptionPrice { Id = 6, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Monthly, Price = 35000.00m }
+                new SubscriptionPrice { Id = 4, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Daily, Price = 2000.00m },
+                new SubscriptionPrice { Id = 5, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Biweekly, Price = 15000.00m },
+                new SubscriptionPrice { Id = 6, VehicleType = VehicleType.Motorcycle, Plan = SubscriptionPlan.Monthly, Price = 30000.00m }
             );
 
             return modelBuilder;

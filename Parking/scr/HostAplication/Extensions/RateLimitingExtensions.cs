@@ -11,14 +11,20 @@ namespace Parking.API.scr.HostAplication.Extensions
             {
                 // Global: 100 requests per minute per IP
                 options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
-                    RateLimitPartition.GetFixedWindowLimiter(
+                {
+                    // Excluir el endpoint /CashRegister/today del rate limiting global
+                    if (context.Request.Path.StartsWithSegments("/CashRegister/today"))
+                        return RateLimitPartition.GetNoLimiter("no-limit");
+
+                    return RateLimitPartition.GetFixedWindowLimiter(
                         partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "unknown",
                         factory: _ => new FixedWindowRateLimiterOptions
                         {
                             PermitLimit = 100,
                             Window = TimeSpan.FromMinutes(1),
                             QueueLimit = 0
-                        }));
+                        });
+                });
 
                 // Strict policy for auth endpoints (login, refresh): 10 per minute
                 options.AddFixedWindowLimiter("auth", limiterOptions =>

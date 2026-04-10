@@ -5,17 +5,23 @@ using SimpleResults;
 
 namespace Parking.API.scr.Core.SubscriptionUseCase.UseCase
 {
+    public class CloseSubscriptionRequest
+    {
+        public PaymentMethod Method { get; set; }
+    }
+
     public class CloseSubscriptionResponse
     {
         public int SubscriptionId { get; set; }
         public decimal Amount { get; set; }
         public SubscriptionPlan Plan { get; set; }
+        public PaymentMethod Method { get; set; }
         public string Message { get; set; } = string.Empty;
     }
 
     public class CloseSubscriptionUseCase(DbContext context, IDatetimeservice dateTime)
     {
-        public async Task<Result<CloseSubscriptionResponse>> ExecuteAsync(int id, PaymentMethod method = PaymentMethod.Cash)
+        public async Task<Result<CloseSubscriptionResponse>> ExecuteAsync(int id, CloseSubscriptionRequest request)
         {
             var subscription = await context.Set<Subscriptions>()
                 .Include(s => s.Vehicle)
@@ -44,7 +50,7 @@ namespace Parking.API.scr.Core.SubscriptionUseCase.UseCase
             var payment = new Payment
             {
                 Amount = price.Price,
-                Method = method,
+                Method = request.Method,
                 PaymentDate = dateTime.Now,
                 CashRegisterId = cash.Id
             };
@@ -60,7 +66,8 @@ namespace Parking.API.scr.Core.SubscriptionUseCase.UseCase
                 SubscriptionId = subscription.Id,
                 Amount = price.Price,
                 Plan = subscription.Plan,
-                Message = $"Subscription closed and payment of {price.Price} registered."
+                Method = request.Method,
+                Message = $"Subscription closed and payment of {price.Price} registered via {request.Method}."
             });
         }
     }

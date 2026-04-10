@@ -46,5 +46,13 @@ namespace Parking.API.scr.Core.CashRegisterUseCase
             else
                 return BadRequest(result);
         }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("today")]
+        public async Task<Result<TodayIncomeResponse>> TodayIncome(
+            [FromServices] GetTodayIncomeUseCase useCase)
+        {
+            return await useCase.ExecuteAsync();
+        }
     }
 }

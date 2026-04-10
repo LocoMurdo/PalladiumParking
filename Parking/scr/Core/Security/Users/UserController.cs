@@ -17,6 +17,7 @@ namespace Parking.API.scr.Core.Security.Users
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType<Result>(StatusCodes.Status400BadRequest)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<Result> Create(
         [FromBody] CreateBasicUserRequest request,
@@ -82,6 +83,7 @@ namespace Parking.API.scr.Core.Security.Users
         /// </summary>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public async Task<Result> Delete(
         int id,

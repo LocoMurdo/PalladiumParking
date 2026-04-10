@@ -72,12 +72,25 @@ namespace Parking.API.scr.Core.ParkingSessionUseCase
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
         [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [Authorize(Roles = "Admin")]
         [HttpPost("{id}/cancel")]
         public async Task<Result> Cancel(
         int id,
         CancelParkingSessionUseCase useCase)
         {
             return await useCase.ExecuteAsync(id);
+        }
+
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType<Result>(StatusCodes.Status404NotFound)]
+        [ProducesResponseType<Result>(StatusCodes.Status409Conflict)]
+        [HttpPut("{id}/payment-method")]
+        public async Task<Result<UpdatePaymentMethodResponse>> UpdatePaymentMethod(
+            int id,
+            [FromBody] UpdatePaymentMethodRequest request,
+            [FromServices] UpdateParkingPaymentMethodUseCase useCase)
+        {
+            return await useCase.ExecuteAsync(id, request);
         }
     }
 }
